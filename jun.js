@@ -38,7 +38,7 @@ function setDemo(e) {
     "                file gas.log size 10k files 3;\n                flag all;\n            }\n        }\n    }\n}";
 }
 
-function FiltrInactive(leaf) {
+function filtrInactive(leaf) {
   let str = leaf.slice();
   console.log(str);
   str = str.replace(/\s(\d+)\s*$/, ``);
@@ -141,7 +141,7 @@ function doConvert() {
             cleanElem = cleanElem.replace('inactive: ', '');
             const linactive = [...tree];
             linactive[0] = 'deactivate';
-            setDPTree(tree, 'inactive_line', retSetCommand(linactive, FiltrInactive(cleanElem.replace(/\;\s*.*/, '')))); //.split(' ')[0]
+            setDPTree(tree, 'inactive_line', retSetCommand(linactive, filtrInactive(cleanElem.replace(/\;\s*.*/, '')))); //.split(' ')[0]
           } else if (cleanElem.includes('protect: ')) {
             cleanElem = cleanElem.replace('protect: ', '');
             const lprotect = [...tree];
