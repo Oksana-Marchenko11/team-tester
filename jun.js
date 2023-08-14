@@ -3,7 +3,7 @@
 Juniper config to set converter
 https://github.com/Mr-Method/jun2set
 ====================================
-date: 2023.08.13
+date: 2023.08.14
 ====================================
 */
 
@@ -21,19 +21,19 @@ const dptree = {};
 
 function setDPTree(commands, mode, leaf) {
   let str = commands.join(' ');
-  if ( dptree[mode] === undefined ) dptree[mode] = {};
-  if ( dptree[mode][str] === undefined ) dptree[mode][str] = leaf;
+  if (dptree[mode] === undefined) dptree[mode] = {};
+  if (dptree[mode][str] === undefined) dptree[mode][str] = leaf;
 }
 
 function getDPTree(commands, mode) {
   let str = commands.join(' ');
-  if ( dptree[mode] === undefined || dptree[mode][str] === undefined ) return;
+  if (dptree[mode] === undefined || dptree[mode][str] === undefined) return;
   setInstance += dptree[mode][str];
   delete dptree[mode][str];
 }
 
-function setDemo (e) {
-  document.getElementById("textin").value = 
+function setDemo(e) {
+  document.getElementById("textin").value =
     "system {\n    processes {\n        general-authentication-service {\n            traceoptions {\n" +
     "                file gas.log size 10k files 3;\n                flag all;\n            }\n        }\n    }\n}";
 }
@@ -114,7 +114,7 @@ function doConvert() {
       }
 
       if (cleanElem.includes(";")) {
-        if ( cleanElem.match(/\[(.*?)\];/g) ) {
+        if (cleanElem.match(/\[(.*?)\];/g)) {
           var [a, b] = cleanElem.split(' [ ');
           if (a.includes('inactive: ')) {
             a = a.replace('inactive: ', '');
@@ -129,7 +129,7 @@ function doConvert() {
           }
           b.split(' ').forEach(function (item) {
             if (!item.includes(']')) {
-              setInstance += retSetCommand(tree, a+' '+item);
+              setInstance += retSetCommand(tree, a + ' ' + item);
             } else {
               getDPTree(tree, 'inactive_array');
               getDPTree(tree, 'protect_array');
@@ -193,21 +193,21 @@ function destroyBoxes() {
 
 function showSet() {
   codeBlock.innerText = setInstance;
-  if ( setInstance ) {
+  if (setInstance) {
     outputBlock.style.display = 'block';
-  	var b = document.createElement("button");
-	b.className = "at_copy";
-	b.type = "button";
-	b.ariaLabel = "Copy code to clipboard";
-	b.innerText = "Copy";
-	codeBlock.parentElement.append(b);
-	b.addEventListener("click", function() {
-		var e = codeBlock.innerText.trim();
-        copyTextToClipboard(e);
-        b.innerText = "Copied";
-        setTimeout(function() {
-			b.innerText = "Copy"
-		}, 1e3)
+    var b = document.createElement("button");
+    b.className = "at_copy";
+    b.type = "button";
+    b.ariaLabel = "Copy code to clipboard";
+    b.innerText = "Copy";
+    codeBlock.parentElement.append(b);
+    b.addEventListener("click", function () {
+      var e = codeBlock.innerText.trim();
+      copyTextToClipboard(e);
+      b.innerText = "Copied";
+      setTimeout(function () {
+        b.innerText = "Copy"
+      }, 1e3)
     });
   }
 }
@@ -240,9 +240,9 @@ function copyTextToClipboard(text) {
     fallbackCopyTextToClipboard(text);
     return;
   }
-  navigator.clipboard.writeText(text).then(function() {
+  navigator.clipboard.writeText(text).then(function () {
     console.log('Async: Copying to clipboard was successful!');
-  }, function(err) {
-     console.error('Async: Could not copy text: ', err);
+  }, function (err) {
+    console.error('Async: Could not copy text: ', err);
   });
 }
