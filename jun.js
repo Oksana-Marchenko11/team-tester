@@ -38,7 +38,7 @@ function setDemo(e) {
     "                file gas.log size 10k files 3;\n                flag all;\n            }\n        }\n    }\n}";
 }
 
-function FiltrInactive(leaf) {
+function filtrInactive(leaf) {
   let str = leaf.slice();
   console.log(str);
   str = str.replace(/\s(\d+)\s*$/, ``);
