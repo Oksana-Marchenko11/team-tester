@@ -3,7 +3,7 @@
 Juniper config to set converter
 https://github.com/Mr-Method/jun2set
 ====================================
-date: 2023.08.14
+date: 2023.08.14 monday
 ====================================
 */
 
