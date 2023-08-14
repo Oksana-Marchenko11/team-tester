@@ -141,7 +141,7 @@ function doConvert() {
             cleanElem = cleanElem.replace('inactive: ', '');
             const linactive = [...tree];
             linactive[0] = 'deactivate';
-            setDPTree(tree, 'inactive_line', retSetCommand(linactive, FiltrInactive(cleanElem.replace(/\;\s*.*/, '')))); //.split(' ')[0]
+            setDPTree(tree, 'inactive_line', retSetCommand(linactive, filtrInactive(cleanElem.replace(/\;\s*.*/, '')))); //.split(' ')[0]
           } else if (cleanElem.includes('protect: ')) {
             cleanElem = cleanElem.replace('protect: ', '');
             const lprotect = [...tree];
